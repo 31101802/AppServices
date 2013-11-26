@@ -1,0 +1,118 @@
+﻿@{
+    ViewBag.Title = "File";
+}
+
+@model  quierobesarte.Models.UploadImagesDto
+
+<div class="row show-grid text-center" style="color: #D93600">
+    <h5>@Model.WeddingName</h5>
+</div>
+<div id="pnlFileUploadNotSupported" class="row show-grid text-center" style="color: #D93600; display: none;">
+    Lo sentimos pero su navegador no soporta la subida de ficheros.<br />
+    Aun así puedes echar un vistazo a las fotos subidas. !Disfrútalas!
+</div>
+<div class="row show-grid text-center">
+@*    @if(Model.IsWeddingActive)
+    {
+        *@<span id="pnlFileUpload">
+            <span class="btn btn-quierobesarte  fileinput-button">
+                <i class="glyphicon glyphicon-plus"></i>
+                <span>Subir fotos</span>
+                <input id="fileupload" type="file" name="files[]" multiple>
+            </span>
+        </span>
+  @*  }*@
+
+    <a href='@Url.Action("Viewer", "Uploader", new { guid = Request["guid"] })'>
+        <span class="btn btn-quierobesarte">
+            <span>Ver fotos</span>
+        </span>
+    </a>
+</div>
+
+
+
+
+
+<!-- The global progress bar -->
+<div id="progress" class="progress  text-center">
+    <div class="progress-bar progress-bar-success"></div>
+</div>
+
+
+<!-- The container for the uploaded files -->
+<div id="info" class="text-center" style="color: #D93600"></div>
+<br>
+<div class="row show-grid text-center" style="color: #D93600">
+    ¿Quieres que te enviemos estas fotos y el vídeo de esta boda?
+</div>
+<br/>
+<div class="row show-grid text-center">
+    <a href="mailto:quierobesarte.es@gmail.com?Subject=Hola, Quiero Besarte&amp;body=Me gustaria que me enviaseis las fotos y el videoclip de la boda de @Model.WeddingName %0D%0A %0D%0AGracias!" style="font-family: Helvetica; font-weight: bold; text-decoration: none" target="_blank">
+        <span class="btn btn-quierobesarte">
+            <span>Sí, quiero</span>
+        </span>
+    </a>
+</div>
+<br/>
+<script>
+    /*jslint unparam: true */
+    /*global window, $ */
+    $(function () {
+        'use strict';
+        var url = '/Uploader/Upload/?guid=@Request["guid"]',
+            count = 0,
+            max = 0;
+        $('#progress').hide();
+
+        $('#fileupload').bind('fileuploadadd', function () {
+            $('#progress').hide();
+            $('#info').hide();
+            count = count + 1;
+            if (count > max) {
+                max = count;
+            }
+        });
+        $('#fileupload').fileupload({
+            url: url,
+            autoUpload: true,
+            dataType: 'json',
+            disableImageResize: /Android(?!.*Chrome)|Opera/.test(window.navigator && navigator.userAgent),
+            imageMaxWidth: 1920,
+            imageMaxHeight: 1080,
+            imageCrop: false, // Force cropped images
+            done: function (e, data) {
+                console.log(data.loaded + '-' + data.total);
+                $.each(data.result.files, function (index, file) {
+                    count = count - 1;
+                });
+
+                console.log(count);
+                if (count === 0) {
+                    $('#info').show();
+                    $('#info').text('Se han subido [' + max + '] fotos.');
+                    max = count = 0;
+                }
+            },
+
+            progressall: function (e, data) {
+                $('#progress').show();
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+
+                $('#progress .progress-bar').css(
+                    'width',
+                    progress + '%'
+                );
+            }
+        }).prop('disabled', !$.support.fileInput)
+            .parent().addClass($.support.fileInput ? undefined : 'disabled');
+
+        if ($.support.fileInput) {
+            $('#pnlFileUploadNotSupported').hide();
+            $('#pnlFileUpload').show();
+        } else {
+            $('#pnlFileUploadNotSupported').show();
+            $('#pnlFileUpload').hide();
+        }
+    });
+</script>

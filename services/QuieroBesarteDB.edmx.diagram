@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dd5c322e583a43e3a2f81d958fb7901c" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="db498802376Model.wedding" PointX="7.875" PointY="5.25" Width="1.5" />
+        <EntityTypeShape EntityType="db498802376Model.wedding_image" PointX="6.875" PointY="9.5" Width="1.5" />
+        <AssociationConnector Association="db498802376Model.fk" />
+        <EntityTypeShape EntityType="db498802376Model.log" Width="1.5" PointX="4.25" PointY="5.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

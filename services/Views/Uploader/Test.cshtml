@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Test";
+    Layout = null;
+}
+
+<html>
+    <head>
+        <title>Test</title>
+    </head>
+<body>
+    <h2>Test</h2>
+
+    <form name="input" action="/Uploader/Test" method="post">
+        <input type="submit" value="Submit">
+        @if (Request.HttpMethod == "POST")
+        {
+            <span>Funciona!!!</span>
+        }
+    </form>
+</body>
+</html>
+
+

@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Viewer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using System.Web.Hosting
+@model quierobesarte.Models.WeddingImageViewerDto
+
+<div class="row show-grid text-center" style="color: #D93600 ">
+    <h5>@Model.WeddingName</h5>
+</div>
+<div class="row show-grid">
+    <ul id="imageContainer" class="gallery">
+    </ul>
+</div>
+
+<div class="row show-grid text-center viewmore">
+    <span id="viewMore" data-page="0" class="btn btn-quierobesarte">
+        <span>Ver más</span>
+    </span>
+</div>
+
+<script type="text/html" id="template">
+    <li><a data-template-bind='[{"attribute": "href", "value": "originalPath"}]'>
+        <img data-src="thumbnailPath" data-template-bind='[{"attribute": "alt", "value": "originalPath"}]' /></a></li>
+</script>
+
+<script>
+
+    (function () {
+
+
+
+        var virtualPath = '@HostingEnvironment.ApplicationVirtualPath',
+            weddingId = '@Model.WeddingId',
+            url,
+            numItems = 6,
+            getImages = function (page) {
+
+                url = virtualPath + 'api/images/' + weddingId + '?page=' + page + '&numItems=' + numItems;
+                console.log(url);
+                $.get(url, function (data) {
+
+                    $("#imageContainer").append($("<div  id='page" + page + "'></div>"));
+                    $("#page" + page).loadTemplate("#template", data);
+                    if (data.length == numItems) {
+                        $("#viewMore").data('page', page + 1);
+                    } else {
+                        $("#viewMore").remove();
+                    }
+                    var options = {};
+                    window.Code.PhotoSwipe.attach(window.document.querySelectorAll('#imageContainer a'), options);
+
+
+                }, 'json');
+            };
+
+        getImages(0);
+
+        $("#viewMore").click(function () {
+
+            var page = parseInt($("#viewMore").data('page'));
+            getImages(page);
+        });
+        
+
+    })();
+
+
+</script>

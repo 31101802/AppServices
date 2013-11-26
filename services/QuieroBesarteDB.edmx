@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="db498802376Model.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="db498802376ModelStoreContainer">
+          <EntitySet Name="log" EntityType="db498802376Model.Store.log" store:Type="Tables" Schema="loreto_cc_db" />
+          <EntitySet Name="wedding" EntityType="db498802376Model.Store.wedding" store:Type="Tables" Schema="loreto_cc_db" />
+          <EntitySet Name="wedding_image" EntityType="db498802376Model.Store.wedding_image" store:Type="Tables" Schema="loreto_cc_db" />
+          <AssociationSet Name="fk" Association="db498802376Model.Store.fk">
+            <End Role="wedding" EntitySet="wedding" />
+            <End Role="wedding_image" EntitySet="wedding_image" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="device" Type="varchar" MaxLength="45" />
+          <Property Name="version" Type="varchar" MaxLength="45" />
+          <Property Name="date" Type="datetime" />
+          <Property Name="method" Type="varchar" MaxLength="100" />
+          <Property Name="user" Type="varchar" MaxLength="100" />
+          <Property Name="status" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="wedding">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="description" Type="varchar" Nullable="false" MaxLength="1024" />
+          <Property Name="path" Type="varchar" Nullable="false" MaxLength="2048" />
+          <Property Name="qrcode" Type="blob" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="active" Type="bool" />
+        </EntityType>
+        <EntityType Name="wedding_image">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="ubigint" Nullable="false" />
+          <Property Name="wedding_id" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="1024" />
+          <Property Name="title" Type="varchar" MaxLength="1024" />
+          <Property Name="comment" Type="varchar" MaxLength="2048" />
+          <Property Name="created" Type="datetime" Nullable="false" />
+          <Property Name="user_created" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="fk">
+          <End Role="wedding" Type="db498802376Model.Store.wedding" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="wedding_image" Type="db498802376Model.Store.wedding_image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wedding">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="wedding_image">
+              <PropertyRef Name="wedding_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db498802376Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="db498802376Entities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="weddings" EntityType="db498802376Model.wedding" />
+          <EntitySet Name="wedding_image" EntityType="db498802376Model.wedding_image" />
+          <AssociationSet Name="fk" Association="db498802376Model.fk">
+            <End EntitySet="weddings" Role="wedding" />
+            <End EntitySet="wedding_image" Role="wedding_image" />
+          </AssociationSet>
+          <EntitySet Name="logs" EntityType="db498802376Model.log" />
+        </EntityContainer>
+        <EntityType Name="wedding">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="description" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="path" Nullable="false" MaxLength="2048" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="qrcode" MaxLength="65535" FixedLength="false" Type="Binary" />
+          <Property Name="date" Nullable="false" Precision="0" Type="DateTime" />
+          <Property Name="active" Type="Boolean" />
+          <NavigationProperty Name="wedding_image" Relationship="db498802376Model.fk" FromRole="wedding" ToRole="wedding_image" />
+        </EntityType>
+        <EntityType Name="wedding_image">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Nullable="false" Precision="20" Scale="0" Type="Decimal" />
+          <Property Name="wedding_id" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="name" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="title" MaxLength="1024" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="comment" MaxLength="2048" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="created" Nullable="false" Precision="0" Type="DateTime" />
+          <NavigationProperty Name="wedding" Relationship="db498802376Model.fk" FromRole="wedding_image" ToRole="wedding" />
+          <Property Type="String" Name="user_created" />
+        </EntityType>
+        <Association Name="fk">
+          <End Type="db498802376Model.wedding" Multiplicity="1" Role="wedding">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="db498802376Model.wedding_image" Multiplicity="*" Role="wedding_image" />
+          <ReferentialConstraint>
+            <Principal Role="wedding">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="wedding_image">
+              <PropertyRef Name="wedding_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="device" />
+          <Property Type="String" Name="version" />
+          <Property Type="DateTime" Name="date" />
+          <Property Type="String" Name="method" />
+          <Property Type="String" Name="user" />
+          <Property Type="String" Name="status" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db498802376ModelStoreContainer" CdmEntityContainer="db498802376Entities">
+          <EntitySetMapping Name="weddings">
+            <EntityTypeMapping TypeName="db498802376Model.wedding">
+              <MappingFragment StoreEntitySet="wedding">
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="qrcode" ColumnName="qrcode" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wedding_image">
+            <EntityTypeMapping TypeName="db498802376Model.wedding_image">
+              <MappingFragment StoreEntitySet="wedding_image">
+                <ScalarProperty Name="user_created" ColumnName="user_created" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="wedding_id" ColumnName="wedding_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="logs">
+            <EntityTypeMapping TypeName="db498802376Model.log">
+              <MappingFragment StoreEntitySet="log">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="user" ColumnName="user" />
+                <ScalarProperty Name="method" ColumnName="method" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="device" ColumnName="device" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

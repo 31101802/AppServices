@@ -1,0 +1,62 @@
+﻿.btn-quierobesarte {
+  color: #ffffff;
+  background-color: #D93600;
+}
+.btn-quierobesarte:hover,
+.btn-quierobesarte:focus,
+.btn-quierobesarte:active,
+.btn-quierobesarte.active,
+.open .dropdown-toggle.btn-quierobesarte {
+  color: #ffffff;
+  background-color: #D86C4B;
+  border-color: #D86C4B;
+}
+.btn-quierobesarte:active,
+.btn-quierobesarte.active,
+.open .dropdown-toggle.btn-quierobesarte {
+  background: #D93600;
+}
+.btn-quierobesarte.disabled,
+.btn-quierobesarte[disabled],
+fieldset[disabled] .btn-quierobesarte,
+.btn-quierobesarte.disabled:hover,
+.btn-quierobesarte[disabled]:hover,
+fieldset[disabled] .btn-quierobesarte:hover,
+.btn-quierobesarte.disabled:focus,
+.btn-quierobesarte[disabled]:focus,
+fieldset[disabled] .btn-quierobesarte:focus,
+.btn-quierobesarte.disabled:active,
+.btn-quierobesarte[disabled]:active,
+fieldset[disabled] .btn-quierobesarte:active,
+.btn-quierobesarte.disabled.active,
+.btn-quierobesarte[disabled].active,
+fieldset[disabled] .btn-quierobesarte.active {
+  background-color: #D86C4B;
+}
+
+.progress-bar-success {
+background-color: #D93600;
+}
+.progress-bar {
+background: #D86C4B;
+-webkit-box-shadow: none;
+box-shadow: none;
+}
+.progress-bar-success {
+background-color: #D93600;
+}
+
+.viewmore{
+    padding: 20px 0 20px 0;
+}
+
+@media (min-width: 1200px) {
+
+    .login-screen {
+  background-color: #1abc9c;
+  min-height: 473px;
+  padding: 123px 199px 33px 306px;
+  width: 865px;
+}
+
+}
