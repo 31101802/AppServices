@@ -35,11 +35,11 @@ namespace quierobesarte.Common
 
             var hasCorrectVersion = IsAcceptedVersion(version);
             var status = "VersionOk";
-
-            if (System.Web.HttpContext.Current.Request.Headers["User-Agent"] != null)
-            {
-                hasCorrectVersion=  true;
-            }
+            //Commented this line
+            //if (System.Web.HttpContext.Current.Request.Headers["User-Agent"] != null)
+            //{
+            //    hasCorrectVersion=  true;
+            //}
 
             if (!hasCorrectVersion)
             {

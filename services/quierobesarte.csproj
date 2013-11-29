@@ -267,6 +267,7 @@
     <Content Include="fonts\lato\lato-regular-webfont.eot" />
     <Content Include="fonts\lato\lato-regular-webfont.ttf" />
     <Content Include="fonts\lato\lato-regular-webfont.woff" />
+    <None Include="Properties\PublishProfiles\Chema.pubxml" />
     <None Include="Properties\PublishProfiles\ToFolder.pubxml" />
     <None Include="Properties\PublishProfiles\ftp.pubxml" />
     <EntityDeploy Include="QuieroBesarteDB.edmx">
