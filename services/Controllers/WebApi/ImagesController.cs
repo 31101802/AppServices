@@ -29,6 +29,8 @@ namespace quierobesarte.Controllers
             Utils.LogRequestHeaders("ImagesController-Get");
             using (var db = new db498802376Entities())
             {
+                if (page > 0)
+                    page--;
                 string weddingId;
                 var wedding = db.weddings.SingleOrDefault(w => w.id == id);
                 if (wedding != null)
