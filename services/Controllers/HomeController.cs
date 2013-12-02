@@ -14,6 +14,25 @@ namespace quierobesarte.Controllers
 
         }
 
+        public ActionResult Url(string type)
+        {
+            if(type.ToLower()=="facebook")
+            {
+                return Redirect("http://goo.gl/0RLNZh"); 
+            }
+            if (type.ToLower() == "twitter")
+            {
+                return Redirect("http://goo.gl/Ml0BbI");
+            }
+            if (type.ToLower() == "vimeo")
+            {
+                return Redirect("http://goo.gl/XsvDcN");
+            }
+            return null;
+
+        }
+
+
 
     }
 }
