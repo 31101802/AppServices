@@ -18,6 +18,7 @@ namespace quierobesarte.Controllers.WebApi
             id = HttpUtility.UrlDecode(id);
             Utils.LogRequestHeaders("WeddingController-Get");
          
+            
 
 
             WeddingDto wedding = null;

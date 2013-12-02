@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Web;
 using System.Web.Http;
 
 namespace quierobesarte.Common
@@ -66,6 +67,7 @@ namespace quierobesarte.Common
             if(!hasCorrectVersion)
             {
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.UpgradeRequired));
+                
             }
         }
 

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Web;
 using System.Web.Helpers;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -116,10 +118,18 @@ namespace quierobesarte.Controllers
         [System.Web.Mvc.HttpPost]
         public ActionResult Upload()
         {
+            try
+            {
+                Utils.LogRequestHeaders("UploaderController-Upload");
+            }
+            catch (Exception)
+            {
 
-            Utils.LogRequestHeaders("UploaderController-Upload");
-
-            var filesUploaded = new List<object>();
+                return new HttpStatusCodeResult(HttpStatusCode.UpgradeRequired);
+            }
+           
+            
+          var filesUploaded = new List<object>();
             string weddingId = Request["guid"];
 
             using (var db = new db498802376Entities())
