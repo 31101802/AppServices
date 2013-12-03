@@ -18,7 +18,7 @@ namespace quierobesarte.Controllers
         {
             if(type.ToLower()=="facebook")
             {
-                return Redirect("http://goo.gl/0RLNZh"); 
+                return Redirect("http://goo.gl/RLqYkH"); 
             }
             if (type.ToLower() == "twitter")
             {

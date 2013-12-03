@@ -26,15 +26,17 @@ namespace quierobesarte.Common
             var device = System.Web.HttpContext.Current.Request.Headers["App-Device"];
             decimal version;
             
-            var versionHeader = System.Web.HttpContext.Current.Request.Headers["App-Version"];
+            var versionHeader = HttpContext.Current.Request.Headers["App-Version"];
 
-            var style = NumberStyles.AllowDecimalPoint;
+            const NumberStyles style = NumberStyles.AllowDecimalPoint;
             var culture = CultureInfo.CreateSpecificCulture("en-US");
             if (Decimal.TryParse(versionHeader, style, culture, out version)) ;
 
             var user = GetUser();
 
-            var hasCorrectVersion = IsAcceptedVersion(version);
+            var hasCorrectVersion = IsAcceptedVersion(version) || HttpContext.Current.Request.Headers["X-Requested-With"]=="XMLHttpRequest";
+
+
             var status = "VersionOk";
             //Commented this line
             //if (System.Web.HttpContext.Current.Request.Headers["User-Agent"] != null)
