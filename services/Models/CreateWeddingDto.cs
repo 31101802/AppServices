@@ -12,10 +12,8 @@ namespace quierobesarte.Models
         public string CurrentQrCodeImageName { get; set; }
         public List<WeddingDto> Weddings { get; set; }
         public bool WeddingCreated { get; set; }
+        public bool IsAdmin { get; set; }
 
-        public bool IsValidPassword(string password)
-        {
-            return password == "Av@nade123";
-        }
+  
     }
 }

@@ -7,7 +7,7 @@
 <form action="/Uploader/Admin" method="post">
 
 
-    @if (Session["IsValidPassword"] != null || Model.IsValidPassword(Request["Password"]))
+    @if (Model.IsAdmin)
     {
         <div class="row show-grid text-center">
             <h4>Crear boda</h4>

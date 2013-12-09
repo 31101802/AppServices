@@ -29,7 +29,7 @@
         </span>
     </a>
 
-    @if (Session["IsValidPassword"])
+    @if (Model.IsAdmin)
     {
         <a href='@Url.Action("AdminViewer", "Uploader", new { guid = Request["guid"] })'>
             <span class="btn btn-quierobesarte">

@@ -7,6 +7,6 @@ namespace quierobesarte.Models
 {
     public interface IAuthentication
     {
-         bool IsValidPassword(string password);
+        bool IsAdmin { get; set; }
     }
 }

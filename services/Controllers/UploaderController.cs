@@ -21,6 +21,7 @@ namespace quierobesarte.Controllers
             var model = new UploadImagesDto();
             var weddingId = Request["guid"];
 
+
             return Security.ActionResult(weddingId, () =>
                 {
                     using (var db = new db498802376Entities())
@@ -35,17 +36,12 @@ namespace quierobesarte.Controllers
                             }
                         }
                     }
+                    model.IsAdmin = Session["IsValidPassword"] != null ? (bool) Session["IsValidPassword"] : false;
                 }, View(model));
         }
 
 
-        public ActionResult Admin()
-        {
-            var model = new AdminDto();
-            model = GetWeddings(model);
-            //model.PublicId
-            return View(model);
-        }
+  
 
         private static AdminDto GetWeddings(AdminDto model)
         {
@@ -67,12 +63,14 @@ namespace quierobesarte.Controllers
             return model;
         }
 
-        [System.Web.Mvc.HttpPost]
+ 
         public ActionResult Admin(AdminDto model)
         {
 
-            if (Session["IsValidPassword"] != null || model.IsValidPassword(Request["Password"]))
+            if (Session["IsValidPassword"] != null || Request["Password"]=="Av@nade123")
             {
+                Session["IsValidPassword"] = true;
+                model.IsAdmin = true;
                 if (!string.IsNullOrWhiteSpace(model.Name) && !string.IsNullOrWhiteSpace(model.Date))
                 {
 
@@ -101,12 +99,14 @@ namespace quierobesarte.Controllers
 
                                 });
                             db.SaveChanges();
+
+                            model.WeddingCreated = true;
                         }
 
 
                     }
 
-                    model.WeddingCreated = true;
+                   
 
 
                 }
