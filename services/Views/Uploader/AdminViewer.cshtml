@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "AdminViewer";
+}
+@model quierobesarte.Models.WeddingImageViewerDto
+
+
+
+      <form action="~/Uploader/AdminViewer?guid=@Request["guid"]" method="post">
+          <div class="row show-grid text-center" style="color: #D93600">
+              <h5>Admin Viewer</h5>
+          </div>
+
+          @foreach (var image in this.Model.Images)
+          {
+
+              <div class="row show-grid text-center viewmore">
+
+                  <img src="@Url.Content(image.ThumbnailPath)" width="200">
+                  <a href="#" onclick=" document.getElementById('imageToDelete').value='@image.Id';document.forms[0].submit(); ">
+                      <span class="btn btn-quierobesarte">
+                          <span>Delete</span>
+                      </span>
+                  </a>
+              </div>
+              <input id="imageToDelete" name="imageToDelete" type="hidden"/>
+          }
+    
+      </form>
+
+  

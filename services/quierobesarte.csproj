@@ -378,11 +378,12 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Uploader\Index.cshtml" />
-    <Content Include="Views\Uploader\CreateWedding.cshtml" />
+    <Content Include="Views\Uploader\Admin.cshtml" />
     <Content Include="Views\Uploader\Viewer.cshtml" />
     <Content Include="Views\Shared\_LayoutTemp.cshtml" />
     <Content Include="Views\Uploader\Test.cshtml" />
     <Content Include="Views\Uploader\Landing.cshtml" />
+    <Content Include="Views\Uploader\AdminViewer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

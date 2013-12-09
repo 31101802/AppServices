@@ -1,0 +1,99 @@
+﻿@using quierobesarte.Models
+@{
+    ViewBag.Title = "Admin";
+}
+@model AdminDto
+
+<form action="/Uploader/Admin" method="post">
+
+
+    @if (Session["IsValidPassword"] != null || Model.IsValidPassword(Request["Password"]))
+    {
+        <div class="row show-grid text-center">
+            <h4>Crear boda</h4>
+            <div>
+                <label for="weddingName">Identificador</label>
+                <input type="text" name="Id" id="weddingName" value=""><br>
+            </div>
+            <div>
+                <label for="weddingName">Nombre de la boda</label>
+                <input type="text" name="Name" id="weddingName" value=""><br>
+            </div>
+            <div>
+                <label for="weddingDate">Fecha</label>
+                <input type="text" name="Date" id="weddingDate" value=""><br>
+            </div>
+
+
+
+
+            <div class="control-group">
+                <a class="btn btn-quierobesarte" href="#" onclick="document.forms[0].submit();">Crear</a>
+            </div>
+
+            @if (Model.WeddingCreated)
+            {
+                Model.WeddingCreated = false;
+                <div>
+                    <img src="@Url.Content("~/qrcodes/" + Model.CurrentQrCodeImageName)" />
+                </div>
+                <div>
+                    <span>Códigp de boda:
+                <h4>@Model.Id</h4>
+                    </span>
+                    <span>Creada correctamente la boda :"@Model.Name" para el dia: @Model.Date</span>
+                    @Html.ActionLink("Ir a la subida de fotos", "Index", "Uploader", new { guid = Model.Id }, new { });
+                </div>
+
+
+
+
+
+            }
+
+            <h6>Lista de bodas</h6>
+
+            <div class="menu">
+                <ul>
+                    @foreach (var wedding in Model.Weddings)
+                    {
+                        <div>
+
+                            <a href='@Url.Content(wedding.QrCodeImageName)' target="_new">
+                                <img src="@Url.Content(wedding.QrCodeImageName)" width="100" height="100" />
+                            </a>
+                            <span>@wedding.Name</span>
+                            <span>- </span>
+                            <span>@wedding.Date</span>
+                            <span>- </span>
+                            <span>@Html.ActionLink("Ir a la subida de fotos", "Index", "Uploader", new { guid = wedding.Id }, new { })</span>
+
+                        </div>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+    else
+    {
+        Session["IsValidPassword"] = null;
+        
+        <div class="row show-grid text-center" style="color: #D93600">
+            <h5>Admin</h5>
+        </div>
+
+        <div class="row show-grid text-center">
+            <input type="password" class="login-field" value="" placeholder="Password" id="login-pass" name="Password">
+
+            <a href="#" onclick="document.forms[0].submit();">
+                <span class="btn btn-quierobesarte">
+                    <span>Login</span>
+                </span>
+            </a>
+
+
+        </div>
+    }
+
+</form>
+

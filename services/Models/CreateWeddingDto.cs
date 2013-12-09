@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace quierobesarte.Models
 {
-    public class CreateWeddingDto : IAuthentication
+    public class AdminDto : IAuthentication
     {
         public string Id { get; set; }
         public string Name { get; set; }

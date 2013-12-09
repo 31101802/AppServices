@@ -12,7 +12,7 @@
     Aun así puedes echar un vistazo a las fotos subidas. !Disfrútalas!
 </div>
 <div class="row show-grid text-center">
-@*    @if(Model.IsWeddingActive)
+    @*    @if(Model.IsWeddingActive)
     {
         *@<span id="pnlFileUpload">
             <span class="btn btn-quierobesarte  fileinput-button">
@@ -21,13 +21,22 @@
                 <input id="fileupload" type="file" name="files[]" multiple>
             </span>
         </span>
-  @*  }*@
+    @*  }*@
 
     <a href='@Url.Action("Viewer", "Uploader", new { guid = Request["guid"] })'>
         <span class="btn btn-quierobesarte">
             <span>Ver fotos</span>
         </span>
     </a>
+
+    @if (Session["IsValidPassword"])
+    {
+        <a href='@Url.Action("AdminViewer", "Uploader", new { guid = Request["guid"] })'>
+            <span class="btn btn-quierobesarte">
+                <span>Borrar fotos</span>
+            </span>
+        </a> 
+    }
 </div>
 
 
@@ -46,7 +55,7 @@
 <div class="row show-grid text-center" style="color: #D93600">
     ¿Quieres que te enviemos estas fotos y el vídeo de esta boda?
 </div>
-<br/>
+<br />
 <div class="row show-grid text-center">
     <a href="mailto:quierobesarte.es@gmail.com?Subject=Hola, Quiero Besarte&amp;body=Me gustaria que me enviaseis las fotos y el videoclip de la boda de @Model.WeddingName %0D%0A %0D%0AGracias!" style="font-family: Helvetica; font-weight: bold; text-decoration: none" target="_blank">
         <span class="btn btn-quierobesarte">
@@ -54,7 +63,7 @@
         </span>
     </a>
 </div>
-<br/>
+<br />
 <script>
     /*jslint unparam: true */
     /*global window, $ */

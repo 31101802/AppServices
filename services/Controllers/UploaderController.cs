@@ -39,15 +39,15 @@ namespace quierobesarte.Controllers
         }
 
 
-        public ActionResult CreateWedding()
+        public ActionResult Admin()
         {
-            var model = new CreateWeddingDto();
+            var model = new AdminDto();
             model = GetWeddings(model);
             //model.PublicId
             return View(model);
         }
 
-        private static CreateWeddingDto GetWeddings(CreateWeddingDto model)
+        private static AdminDto GetWeddings(AdminDto model)
         {
             model.Weddings = new List<WeddingDto>();
             using (var db = new db498802376Entities())
@@ -68,7 +68,7 @@ namespace quierobesarte.Controllers
         }
 
         [System.Web.Mvc.HttpPost]
-        public ActionResult CreateWedding(CreateWeddingDto model)
+        public ActionResult Admin(AdminDto model)
         {
 
             if (Session["IsValidPassword"] != null || model.IsValidPassword(Request["Password"]))
@@ -127,9 +127,9 @@ namespace quierobesarte.Controllers
 
                 return new HttpStatusCodeResult(HttpStatusCode.UpgradeRequired);
             }
-           
-            
-          var filesUploaded = new List<object>();
+
+
+            var filesUploaded = new List<object>();
             string weddingId = Request["guid"];
 
             using (var db = new db498802376Entities())
@@ -179,6 +179,7 @@ namespace quierobesarte.Controllers
             }
         }
 
+
         public ActionResult Viewer()
         {
             var model = new WeddingImageViewerDto();
@@ -199,6 +200,7 @@ namespace quierobesarte.Controllers
                         {
                             model.Images.Add(new WeddingImageDto
                             {
+                                Id = image.id.ToString(),
                                 OriginalPath = "~/uploads/" + image.name,
                                 ThumbnailPath = "~/uploads/Thumbnail/" + image.name,
                                 Comment = image.comment,
@@ -209,6 +211,55 @@ namespace quierobesarte.Controllers
 
                 }
             }, View(model));
+
+
+        }
+
+        public ActionResult AdminViewer()
+        {
+
+            var model = new WeddingImageViewerDto();
+            var weddingId = Request["guid"];
+            return Security.ActionResult(weddingId, () =>
+            {
+                decimal  imageToDelete;
+                decimal.TryParse(Request["imageToDelete"], out imageToDelete);
+                if (imageToDelete>0)
+                {
+                    using (var db = new db498802376Entities())
+                    {
+
+                        db.wedding_image.Remove(db.wedding_image.SingleOrDefault(wi => wi.id == imageToDelete));
+                        db.SaveChanges();
+
+                    }
+                }
+
+                model.Images = new List<WeddingImageDto>();
+                using (var db = new db498802376Entities())
+                {
+                    var singleOrDefault = db.weddings.SingleOrDefault(w => w.id == weddingId);
+
+                    if (singleOrDefault != null)
+                    {
+                        model.WeddingName = singleOrDefault.name;
+                        model.WeddingId = singleOrDefault.id;
+                        foreach (var image in db.wedding_image.Where(w => w.wedding_id == weddingId).OrderByDescending(w => w.created))
+                        {
+                            model.Images.Add(new WeddingImageDto
+                            {
+                                Id = image.id.ToString(),
+                                OriginalPath = "~/uploads/" + image.name,
+                                ThumbnailPath = "~/uploads/Thumbnail/" + image.name,
+                                Comment = image.comment,
+
+                            });
+                        }
+                    }
+
+                }
+            }, View(model));
+
 
         }
 
