@@ -19,10 +19,10 @@ namespace quierobesarte.Common
 
             using (var db = new db498802376Entities())
             {
-                availablesWeddings = db.weddings.Select(w => w.id).ToArray();
+                availablesWeddings = db.weddings.Select(w => w.id.ToLower()).ToArray();
             }
 
-            if ((availablesWeddings != null && availablesWeddings.Contains(id)))
+            if ((availablesWeddings != null && availablesWeddings.Contains(id.ToLower())))
             {
                 action();
                 return succesAction;
