@@ -214,6 +214,62 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="boda\bootstrap\css\bootstrap-responsive.css" />
+    <Content Include="boda\bootstrap\css\bootstrap-responsive.min.css" />
+    <Content Include="boda\bootstrap\css\bootstrap.css" />
+    <Content Include="boda\bootstrap\css\bootstrap.min.css" />
+    <Content Include="boda\bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="boda\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="boda\bootstrap\js\bootstrap.js" />
+    <Content Include="boda\bootstrap\js\bootstrap.min.js" />
+    <Content Include="boda\css\custom.css" />
+    <Content Include="boda\css\normalize.css" />
+    <Content Include="boda\img\blog.jpg" />
+    <Content Include="boda\img\github.jpg" />
+    <Content Include="boda\img\logo.png" />
+    <Content Include="boda\img\twitter.jpg" />
+    <Content Include="boda\index.html" />
+    <Content Include="boda\js\app.js" />
+    <Content Include="boda\js\models\model-in-memory.js" />
+    <Content Include="boda\js\models\model-parse-com.js" />
+    <Content Include="boda\js\models\model-rest-jsonp.js" />
+    <Content Include="boda\js\models\model-rest.js" />
+    <Content Include="boda\js\views\contact.js" />
+    <Content Include="boda\js\views\employeedetails.js" />
+    <Content Include="boda\js\views\employeelist.js" />
+    <Content Include="boda\js\views\home.js" />
+    <Content Include="boda\js\views\shell.js" />
+    <Content Include="boda\lib\backbone-min.js" />
+    <Content Include="boda\lib\jquery-1.9.1.min.js" />
+    <Content Include="boda\lib\parse-1.2.2.min.js" />
+    <Content Include="boda\lib\underscore-min.js" />
+    <Content Include="boda\pics\Amy_Jones.jpg" />
+    <Content Include="boda\pics\Amy_Jones50.jpg" />
+    <Content Include="boda\pics\Eugene_Lee.jpg" />
+    <Content Include="boda\pics\Eugene_Lee50.jpg" />
+    <Content Include="boda\pics\Gary_Donovan.jpg" />
+    <Content Include="boda\pics\Gary_Donovan50.jpg" />
+    <Content Include="boda\pics\James_King.jpg" />
+    <Content Include="boda\pics\James_King50.jpg" />
+    <Content Include="boda\pics\John_Williams.jpg" />
+    <Content Include="boda\pics\John_Williams50.jpg" />
+    <Content Include="boda\pics\Julie_Taylor.jpg" />
+    <Content Include="boda\pics\Julie_Taylor50.jpg" />
+    <Content Include="boda\pics\Kathleen_Byrne.jpg" />
+    <Content Include="boda\pics\Kathleen_Byrne50.jpg" />
+    <Content Include="boda\pics\Lisa_Wong.jpg" />
+    <Content Include="boda\pics\Lisa_Wong50.jpg" />
+    <Content Include="boda\pics\Paula_Gates.jpg" />
+    <Content Include="boda\pics\Paula_Gates50.jpg" />
+    <Content Include="boda\pics\Paul_Jones.jpg" />
+    <Content Include="boda\pics\Paul_Jones50.jpg" />
+    <Content Include="boda\pics\Ray_Moore.jpg" />
+    <Content Include="boda\pics\Ray_Moore50.jpg" />
+    <Content Include="boda\pics\Steven_Wells.jpg" />
+    <Content Include="boda\pics\Steven_Wells50.jpg" />
+    <Content Include="boda\tpl\HomeView.html" />
+    <Content Include="boda\tpl\InvitationView.html" />
+    <Content Include="boda\tpl\ShellView.html" />
     <Content Include="css\bootstrap-docs.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\demo-ie8.css" />
@@ -267,6 +323,8 @@
     <Content Include="fonts\lato\lato-regular-webfont.eot" />
     <Content Include="fonts\lato\lato-regular-webfont.ttf" />
     <Content Include="fonts\lato\lato-regular-webfont.woff" />
+    <Content Include="boda\js\.DS_Store" />
+    <Content Include="boda\readme.md" />
     <None Include="Properties\PublishProfiles\Chema.pubxml" />
     <None Include="Properties\PublishProfiles\ToFolder.pubxml" />
     <None Include="Properties\PublishProfiles\ftp.pubxml" />
@@ -384,9 +442,11 @@
     <Content Include="Views\Uploader\Test.cshtml" />
     <Content Include="Views\Uploader\Landing.cshtml" />
     <Content Include="Views\Uploader\AdminViewer.cshtml" />
+    <Content Include="Views\Boda\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ryv\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -410,7 +470,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>80</DevelopmentServerPort>
+          <DevelopmentServerPort>55463</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

@@ -1,0 +1,43 @@
+<div>
+<!--<p><img src="pics/Lisa_Wong.jpg" width="160" height="160"></p>-->
+<h3><%= title %></h3>
+<div><%= content %></div>
+<p>Nos gustaria contar con vosotros en nuestra boda. Para ello marca las personas que asistiran y despues pulsa el boton "Confirmar":</p>
+<% _.each(attendants,function(item,key,list){ %>
+	<div class="checkbox">
+	    <label>
+	      <input type="checkbox" id = "id<%= item.name %>" value = "<%= item.name %>" > <%= item.name %>
+	    </label>
+	  </div>
+<% }); %>
+
+<button type="button" class="btn btn-success">Confirmar</button>
+
+<br>
+<br>
+<p>O bien si lo prefieres puedes confimar la asistencia por telefono o correo electrónico</p>
+        <table class="table table-striped">
+            
+            <tbody>
+	            <tr>
+	                <td>Teléfono de Roberto:</td>
+	                <td><i class="icon-headphones"></i> 679951134</td>
+	            </tr>
+	            <tr>
+	                <td>Teléfono de Virginia:</td>
+	                <td><i class="icon-headphones"></i> 657550367</td>
+	            </tr>
+	            <tr>
+	                <td>Email de Roberto:</td>
+	                <td><i class="icon-envelope"></i> <a href="mailto:rloreto@gmail.com">rloreto@gmail.com</a></td>
+	            </tr>
+	            <tr>
+	                <td>Email de Virginia:</td>
+	                <td><i class="icon-envelope"></i> <a href="mailto:virginia_js@hotmail.com">virginia_js@hotmail.com</a></td>
+	            </tr>
+	        </tbody>
+        </table>
+</div>
+
+
+
