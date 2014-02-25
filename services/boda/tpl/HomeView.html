@@ -1,118 +1,135 @@
 <div class="hero-unit" style="padding-bottom: 20px;">
     <div class="row">
-        <div class="col-md-8 col-lg-6">
-            <table class="table-condensed">
-                <tr>
-
-                  <td>
-                        <img id="cutdownDay1"  class="img-responsive" src="img/1.png" >
-                    </td>
-                    <td>
-                        <img id="cutdownDay2"  class="img-responsive" src="img/2.png" >
-                    </td>
-
-                    <td>
-                        <img id="cutdownDay3"  class="img-responsive" src="img/1.png" >
-                    </td>
-                    <td>
-                        <img id="cutdownDay" class="img-responsive" src="img/day.png" >
-                    </td>
-                    <td>
-                        <img  class="img-responsive" src="img/rob.png" >
-                    </td>
-                    <td>
-                        <img  class="img-responsive" src="img/vir.png" >
-                    </td>
-
-               
-                    <td>
-                        <img id="cutdownHour1" class="img-responsive" src="img/3.png" >
-                    </td>
-                    <td>
-                        <img id="cutdownHour2" class="img-responsive" src="img/4.png" >
-                    </td>
-                    <td>
-                        <img id="cutdownHour" class="img-responsive" src="img/hour.png" >
-                    </td>
-                    
-
-                </tr>
-                   <tr>
-                  <td>
-                        <img class="img-responsive" src="img/rob.png" >
-                    </td>
-              
-          
-                    <td>
-                        <img id="cutdownMinute1" class="img-responsive" src="img/1.png" >
-                    </td>
-                    <td>
-                        <img id="cutdownMinute2"class="img-responsive" src="img/2.png" >
-                    </td>
+        <div class="box">
+            <div class="col-lg-6 text-center">
+                <table class="table-condensed">
+                    <tr>
                         <td>
-                        <img id="cutdownMinute" class="img-responsive" src="img/minute.png" >
-                    </td>
-               
-                    <td>
-                        <img id="cutdownSecond1" class="img-responsive" src="img/7.png" >
-                    </td>
-                    <td>
-                        <img id="cutdownSecond2" class="img-responsive" src="img/8.png" >
-                    </td>
-             
-            
-                    <td>
-                        <img id="cutdownSecond" class="img-responsive" src="img/second.png" >
-                    </td>
-                    <td>
-                        <img  class="img-responsive" src="img/vir.png" >
-                    </td>
-                    <td>
-                        <img  class="img-responsive" src="img/rob.png" >
-                    </td>
+                            <img id="cutdownDay1" class="img-responsive" src="img/1.png">
+                        </td>
+                        <td>
+                            <img id="cutdownDay2" class="img-responsive" src="img/2.png">
+                        </td>
+                        <td>
+                            <img id="cutdownDay3" class="img-responsive" src="img/1.png">
+                        </td>
+                        <td>
+                            <img id="cutdownDay" class="img-responsive" src="img/day.png">
+                        </td>
+                        <td>
+                            <img class="img-responsive" src="img/rob.png">
+                        </td>
+                        <td>
+                            <img class="img-responsive" src="img/vir.png">
+                        </td>
 
-                </tr>
-            </table> 
-        </div>
+                        <td>
+                            <img id="cutdownHour1" class="img-responsive" src="img/3.png">
+                        </td>
+                        <td>
+                            <img id="cutdownHour2" class="img-responsive" src="img/4.png">
+                        </td>
+                        <td>
+                            <img id="cutdownHour" class="img-responsive" src="img/hour.png">
+                        </td>
 
-        <div class="col-md-4">
-            <h2>NOS CASAMOS</h2>
-            <p>En esta web podras encontrar todo lo relacionado con la boda. Iremos publicando noticias de vuestro interes.</p>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img class="img-responsive" src="img/ryv.png">
+                        </td>
+
+
+                        <td>
+                            <img id="cutdownMinute1" class="img-responsive" src="img/1.png">
+                        </td>
+                        <td>
+                            <img id="cutdownMinute2" class="img-responsive" src="img/2.png">
+                        </td>
+                        <td>
+                            <img id="cutdownMinute" class="img-responsive" src="img/minute.png">
+                        </td>
+
+                        <td>
+                            <img id="cutdownSecond1" class="img-responsive" src="img/7.png">
+                        </td>
+                        <td>
+                            <img id="cutdownSecond2" class="img-responsive" src="img/8.png">
+                        </td>
+
+
+                        <td>
+                            <img id="cutdownSecond" class="img-responsive" src="img/second.png">
+                        </td>
+                        <td>
+                            <img class="img-responsive" src="img/vir1.png">
+                        </td>
+                        <td>
+                            <img class="img-responsive" src="img/rob1.png">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-lg-6 text-center">
+                <div id="carousel-example-generic" class="carousel slide">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators hidden-xs">
+                        <% _.each(mainImages,function(item,key,list){ %>
+                        <li data-target="#carousel-example-generic" data-slide-to="<%= key%>" class="<% if (key === 0) { %>active<% } %>"></li>
+                        <% }); %>
+                    </ol>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <% _.each(mainImages,function(item,key,list){ %>
+                        <div class="item <% if (key === 0) { %>active<% } %>">
+                            <img class="img-responsive img-full" src="img/fotos/<%= item.image %>" alt="">
+                        </div>
+                        <% }); %>
+                    </div>
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                        <span class="icon-prev"></span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                        <span class="icon-next"></span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
-   
+</div>
+
+
+<div class="row">
+    <div class="box">
+        <div class="col-lg-12">
+            <div>  <h4> Tendremos video de boda&nbsp; <small>Domingo 2 de Febrero de 2014</small></h4></div>
+            <img class="img-responsive img-border img-left" src="img/Quiero_Besarte_Creative_Events_Video.png" style="width: 200px" alt="">
+            <hr class="visible-xs">
+            <p>Nuestro amigo y compañero de faenas <a href="https://www.facebook.com/chemitaxis" target="_new">Chema</a> en representacion de <a href="http://www.quierobesarte.es" target="_new">Quiero Besarte Creative Events</a> filmará y montará nuestra boda. Se encargara de inmortalizar este dia para que sea un recuerdo inborrable para todos. </p><p>Desde por la mañana estará con nosotros hasta el final del dia. Seguro que nos lo pasamos genial. ¡Muchas gracias! </p>
+
+        </div>
+    </div>
 </div>
 
 <div class="row">
-    <div class="col-md-12">
-      <div>  <h4>¡Ya tenemos fotografo! &nbsp; <small>Martes 4 de Febrero de 2014</small></h4></div>
+    <div class="box">
+        <div class="col-lg-12">
+            <div>  <h4>¡Ya tenemos fotografo! &nbsp; <small>Martes 4 de Febrero de 2014</small></h4></div>
+            <img class="img-responsive img-border img-left" src="img/jairo-crena-log-24.jpg" style="width: 200px" alt="">
+            <hr class="visible-xs">
+            <p>Es un placer poder contar con el arte de <a href="http://www.jairocrena.com" target="_new">Jairo Crena Photography</a>. Ellos se encargaran de hacernos los reportajes de pre-boda, boda y post-boda. Podeis echar un vistazo a su web para ver sus trabajos. En cuanto tengamos el pre-boda publicaremos aqui para que lo podais ver. </p>
 
-        <div class="row">
-            <div class="col-md-2 col-sm-3 col-xs-6" style="float:left;">
-                <img class="img-responsive" src="img/jairo-crena-log-24.jpg" >
-            </div>
-            <div class="col-md-12 col-md-12">Es un placer poder contar con el arte de <a href="http://www.jairocrena.com" target="_new">Jairo Crena Photography</a>. Ellos se encargaran de hacernos los reportajes de pre-boda, boda y post-boda. Podeis echar un vistazo a su web para ver sus trabajos. En cuanto tengamos el pre-boda publicaremos en esta web las fotos. </div>
-
-         </div>
-     
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-      <div>  <h4>¡Ya tenemos fotografo! &nbsp; <small>Domingo 2 de Febrero de 2014</small></h4></div>
-
-        <div class="row">
-            <div class="col-md-2 col-sm-3 col-xs-6" style="float:left;">
-                <img class="img-responsive" src="img/Quiero_Besarte_Creative_Events_Video.png" >
-            </div>
-            <div class="col-md-12">Nuestro amigo y compañero de faenas <a href="https://www.facebook.com/chemitaxis" target="_new">Chema</a> en representacion de <a href="http://www.quierobesarte.es" target="_new">Quiero Besarte Creative Events</a> filmará y grabara nuestra boda. Se encargara de inmortalizar este dia. </p><p>Desde por la mañana estará con nosotros hasta el final del dia. Seguro que nos lo pasamos genial. ¡Muchas gracias! </div>
-
-         </div>
-     
+        </div>
     </div>
 </div>
 
 
+<script>
+    // Activates the Carousel
+    $('.carousel').carousel({
+        interval: 5000
+    });
+</script>
 
 

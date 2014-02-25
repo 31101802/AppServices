@@ -234,10 +234,8 @@
     <Content Include="boda\js\models\model-parse-com.js" />
     <Content Include="boda\js\models\model-rest-jsonp.js" />
     <Content Include="boda\js\models\model-rest.js" />
-    <Content Include="boda\js\views\contact.js" />
-    <Content Include="boda\js\views\employeedetails.js" />
-    <Content Include="boda\js\views\employeelist.js" />
     <Content Include="boda\js\views\home.js" />
+    <Content Include="boda\js\views\invitationView.js" />
     <Content Include="boda\js\views\shell.js" />
     <Content Include="boda\lib\backbone-min.js" />
     <Content Include="boda\lib\jquery-1.9.1.min.js" />

@@ -1,6 +1,6 @@
 directory.Invitation = Backbone.Model.extend({
 
-    initialize: function () {},
+    initialize: function () { },
 
     sync: function (method, model, options) {
         if (method === "read") {
@@ -12,13 +12,15 @@ directory.Invitation = Backbone.Model.extend({
 
 });
 
-directory.InvitationCollection = Backbone.Collection.extend({
 
-    model: directory.Invitation,
+
+directory.Home = Backbone.Model.extend({
+
+    initialize: function () { },
 
     sync: function (method, model, options) {
         if (method === "read") {
-            directory.store.findByName(options.data.name, function (data) {
+            directory.store.findContent(function (data) {
                 options.success(data);
             });
         }
@@ -27,10 +29,9 @@ directory.InvitationCollection = Backbone.Collection.extend({
 });
 
 
+
+
 directory.MemoryStore = function (successCallback, errorCallback) {
-
-
-
     this.findByIdAndPin = function (id, pin, callback) {
         var invitations = this.invitations;
         var invitation = null;
@@ -42,6 +43,11 @@ directory.MemoryStore = function (successCallback, errorCallback) {
             }
         }
         callLater(callback, invitation);
+    };
+
+    this.findContent = function (callback) {
+        var content = this.contentHome;
+        callLater(callback, content);
     };
 
     // Used to simulate async calls. This is done to provide a consistent interface with stores that use async data access APIs
@@ -88,16 +94,81 @@ directory.MemoryStore = function (successCallback, errorCallback) {
         }]
     }];
 
-    this.content = [{
-        "title": "Entrada 1",
-        "Content": "Esto es el contenido 1"
-    }, {
-        "title": "Entrada 2",
-        "Content": "Esto es el contenido 2"
-    }, {
-        "title": "Entrada 3",
-        "Content": "Esto es el contenido 3"
-    }];
+    this.contentHome = {
+        mainImages: [{
+            image: '0.jpg'
+        }, {
+            image: '2.jpg'
+        }, {
+            image: '5.jpg'
+        }, {
+            image: '6.jpg'
+        }, {
+            image: '7.jpg'
+        }, {
+            image: '8.jpg'
+        }, {
+            image: '9.jpg'
+        }, {
+            image: '10.jpg'
+        }, {
+            image: '11.jpg'
+        }, {
+            image: '12.jpg'
+        }, {
+            image: '13.jpg'
+        }, {
+            image: '14.jpg'
+        }, {
+            image: '15.jpg'
+        }, {
+            image: '16.jpg'
+        }, {
+            image: '17.jpg'
+        }, {
+            image: '18.jpg'
+        }, {
+            image: '19.jpg'
+        }, {
+            image: '20.jpg'
+        }, {
+            image: '21.jpg'
+        }, {
+            image: '22.jpg'
+        }, {
+            image: '23.jpg'
+        }, {
+            image: '24.jpg'
+        }, {
+            image: '27.jpg'
+        }, {
+            image: '28.jpg'
+        }, {
+            image: '29.jpg'
+        }, {
+            image: '30.jpg'
+        }, {
+            image: '31.jpg'
+        }, {
+            image: '32.jpg'
+        }, {
+            image: '33.jpg'
+        }, {
+            image: '34.jpg'
+        }
+
+        ],
+        posts: [{
+            "title": "Entrada 1",
+            "Content": "Esto es el contenido 1"
+        }, {
+            "title": "Entrada 2",
+            "Content": "Esto es el contenido 2"
+        }, {
+            "title": "Entrada 3",
+            "Content": "Esto es el contenido 3"
+        }]
+    };
 
     callLater(successCallback);
 

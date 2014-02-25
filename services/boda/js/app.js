@@ -1,4 +1,4 @@
-var directory = {
+    var directory = {
 
     views: {},
 
@@ -38,7 +38,6 @@ directory.Router = Backbone.Router.extend({
 
     routes: {
         "": "home",
-        "contact": "contact",
         "invitacion/:id/:pin": "invitationDetail"
     },
 
@@ -53,16 +52,32 @@ directory.Router = Backbone.Router.extend({
     },
 
     home: function () {
+
+        var home = new directory.Home(),
+            self = this;
+
         // Since the home view never changes, we instantiate it and render it only once
         if (!directory.homelView) {
-            directory.homelView = new directory.HomeView();
-            directory.homelView.render();
+            home.fetch({
+                success: function (data) {
+                    console.log(data);
+                    directory.homeView = new directory.HomeView({
+                        model: data
+                    });
+                    directory.homeView.render();
+                    self.$content.html(directory.homeView.el);
+                    directory.shellView.selectMenuItem('home-menu');
+                }
+            });
         } else {
+
+            debugger;
             console.log('reusing home view');
-            directory.homelView.delegateEvents(); // delegate events when the view is recycled
+            directory.homeView.delegateEvents(); // delegate events when the view is recycled
+            self.$content.html(directory.homeView.el);
+            directory.shellView.selectMenuItem('home-menu');
         }
-        this.$content.html(directory.homelView.el);
-        directory.shellView.selectMenuItem('home-menu');
+
     },
 
     contact: function () {
